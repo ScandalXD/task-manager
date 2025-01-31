@@ -1,0 +1,30 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: task_manager_app
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html  # Мапимо весь каталог TASK-MANAGER у контейнер
+
+  db:
+    image: mariadb:10
+    container_name: task_manager_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: taskdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+
+volumes:
+  db_data:
