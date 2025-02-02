@@ -3,7 +3,6 @@ require_once __DIR__ . '/auth_system.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     global $pdo;
     
-    // Перевірка, чи існує вже такий користувач
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
     $stmt->execute(['username' => $_POST['username']]);
     if ($stmt->fetchColumn() > 0) {

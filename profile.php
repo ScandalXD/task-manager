@@ -1,9 +1,7 @@
 <?php
-require_once __DIR__ . '/auth_system.php';
+session_start(); 
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once __DIR__ . '/auth_system.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -27,6 +25,10 @@ $user = Auth::getUserById($_SESSION['user_id']);
         <a href="update_name.php" class="btn btn-primary">Змінити ім'я</a>
         <a href="update_password.php" class="btn btn-warning">Змінити пароль</a>
         <a href="logout.php" class="btn btn-danger">Вийти</a>
+
+        <form method="POST" action="delete_account.php" class="mt-3">
+            <button type="submit" name="delete_account" class="btn btn-danger">Видалити акаунт</button>
+        </form>
     </div>
 </body>
 </html>

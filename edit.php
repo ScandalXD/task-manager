@@ -1,5 +1,4 @@
 <?php
-// Перевірка та запуск сесії, якщо вона ще не активна
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,17 +6,15 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/Task.php';
 
-// Перевіряємо, чи користувач авторизований
 if (!isset($_SESSION['user_id'])) {
     die('Помилка: Користувач не авторизований.');
 }
 
-// Перевіряємо, чи передано ID завдання
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die('Помилка: ID не передано.');
 }
 
-$id = intval($_GET['id']); // Переконуємось, що ID є числом
+$id = intval($_GET['id']); 
 $task = Task::getTaskById($id, $_SESSION['user_id']);
 
 if (!$task) {

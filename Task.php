@@ -47,5 +47,12 @@ class Task {
         $stmt = $pdo->prepare("UPDATE tasks SET status = :status WHERE id = :id AND user_id = :user_id");
         return $stmt->execute(['status' => $status, 'id' => $id, 'user_id' => $user_id]);
     }
+
+    public static function deleteUserTasks($user_id) {
+        global $pdo;
+        $stmt = $pdo->prepare("DELETE FROM tasks WHERE user_id = :user_id");
+        return $stmt->execute(['user_id' => $user_id]);
+    }
+
 }
 ?>

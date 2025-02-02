@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/auth_system.php';
 
-// Перевіряємо, чи сесія ще не була запущена
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

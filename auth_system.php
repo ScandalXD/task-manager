@@ -9,11 +9,11 @@ class Auth {
     public static function register($username, $password) {
         global $pdo;
 
-        // Перевіряємо, чи ім'я вже зайняте
+        
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->execute([$username]);
         if ($stmt->fetch()) {
-            return false; // Ім'я вже використовується
+            return false; 
         }
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -55,16 +55,16 @@ class Auth {
     public static function updateUsername($id, $new_name) {
         global $pdo;
 
-        // Перевіряємо, чи нове ім'я вже зайняте
+        
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->execute([$new_name]);
         if ($stmt->fetch()) {
-            return false; // Ім'я вже зайняте
+            return false; 
         }
 
         $stmt = $pdo->prepare("UPDATE users SET username = :username WHERE id = :id");
         if ($stmt->execute(['username' => $new_name, 'id' => $id])) {
-            $_SESSION['username'] = $new_name; // Оновлення сесії
+            $_SESSION['username'] = $new_name; 
             return true;
         }
         return false;
@@ -73,17 +73,16 @@ class Auth {
     public static function updatePassword($id, $old_password, $new_password) {
         global $pdo;
     
-        // Отримуємо поточний хеш пароля
         $stmt = $pdo->prepare("SELECT password FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
         if (!$user) {
-            return false; // Користувача не знайдено
+            return false; 
         }
     
         if (!password_verify($old_password, $user['password'])) {
-            return false; // Старий пароль неправильний
+            return false; 
         }
     
         $hashedPassword = password_hash($new_password, PASSWORD_BCRYPT);
@@ -95,4 +94,7 @@ class Auth {
             return false;
         }
     }
+
+    
+
 }

@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - .:/var/www/html  # Мапимо весь каталог TASK-MANAGER у контейнер
+      - .:/var/www/html  
 
   db:
     image: mariadb:10
