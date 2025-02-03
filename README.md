@@ -22,6 +22,8 @@ Aplikacja umożliwia edycję podstawowych informacji profilowych:
 
 ## Autor
 **Artur Pylypenko** (nr. 44074)
+**Nikita Sukhovoi** (nr. 44090)
+**Denys Halytskyi** (nr. 46459)
 
 ---
 
