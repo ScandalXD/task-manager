@@ -21,9 +21,9 @@ Aplikacja umożliwia edycję podstawowych informacji profilowych:
 - **Widok tylko dla zalogowanych** – użytkownik widzi wyłącznie swoje zadania.
 
 ## Autor
-**Artur Pylypenko** (nr. 44074)
-**Nikita Sukhovoi** (nr. 44090)
-**Denys Halytskyi** (nr. 46459)
+- **Artur Pylypenko** (nr. 44074)
+- **Nikita Sukhovoi** (nr. 44090)
+- **Denys Halytskyi** (nr. 46459)
 
 ---
 
