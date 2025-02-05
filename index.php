@@ -31,11 +31,11 @@ if (Auth::isLoggedIn()) {
         <a class="navbar-brand" href="#">Task Manager</a>
         <div>
             <?php if (Auth::isLoggedIn()): ?>
-                <a href="profile.php" class="btn btn-info me-2">Профіль</a>
-                <a href="logout.php" class="btn btn-danger">Вийти</a>
+                <a href="profile.php" class="btn btn-info me-2">Profile</a>
+                <a href="logout.php" class="btn btn-danger">Logout</a>
             <?php else: ?>
-                <a href="login.php" class="btn btn-primary me-2">Увійти</a>
-                <a href="register.php" class="btn btn-secondary">Реєстрація</a>
+                <a href="login.php" class="btn btn-primary me-2">Sign in</a>
+                <a href="register.php" class="btn btn-secondary">Sign Up</a>
             <?php endif; ?>
         </div>
     </div>
@@ -43,10 +43,10 @@ if (Auth::isLoggedIn()) {
 
 <div class="container mt-5">
     <div class="task-container">
-        <h2 class="mb-4 text-center">Список завдань</h2>
+        <h2 class="mb-4 text-center">List of tasks</h2>
 
         <?php if (Auth::isLoggedIn()): ?>
-            <a href="create.php" class="btn btn-success mb-3 w-100">Додати завдання</a>
+            <a href="create.php" class="btn btn-success mb-3 w-100">Add Task</a>
             <ul class="list-group">
                 <?php foreach ($tasks as $task): ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -59,22 +59,22 @@ if (Auth::isLoggedIn()) {
                             <form method="POST" action="/taskController.php" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                                 <select name="status" class="form-select d-inline w-auto">
-                                    <option value="in_progress" <?php if ($task['status'] === 'in_progress') echo 'selected'; ?>>В процесі</option>
-                                    <option value="completed" <?php if ($task['status'] === 'completed') echo 'selected'; ?>>Виконано</option>
+                                    <option value="in_progress" <?php if ($task['status'] === 'in_progress') echo 'selected'; ?>>In process</option>
+                                    <option value="completed" <?php if ($task['status'] === 'completed') echo 'selected'; ?>>Done</option>
                                 </select>
-                                <button type="submit" name="update_status" class="btn btn-secondary">Оновити</button>
+                                <button type="submit" name="update_status" class="btn btn-secondary">Update</button>
                             </form>
-                            <a href="edit.php?id=<?php echo $task['id']; ?>" class="btn btn-primary">Редагувати</a>
+                            <a href="edit.php?id=<?php echo $task['id']; ?>" class="btn btn-primary">Edit</a>
                             <form method="POST" action="/taskController.php" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
-                                <button type="submit" name="delete" class="btn btn-danger">Видалити</button>
+                                <button type="submit" name="delete" class="btn btn-danger">Remove</button>
                             </form>
                         </div>
                     </li>
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p class="text-center">Будь ласка, <a href="login.php">увійдіть</a> або <a href="register.php">зареєструйтеся</a>, щоб переглянути свої завдання.</p>
+            <p class="text-center">Please, <a href="login.php">log in</a> or <a href="register.php">register</a> to view your tasks.</p>
         <?php endif; ?>
     </div>
 </div>
